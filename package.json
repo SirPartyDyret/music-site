@@ -1,0 +1,22 @@
+{
+  "name": "music-site",
+  "version": "1.0.0",
+  "description": "music site made with the purpose of learning js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SirPartyDyret/music-site.git"
+  },
+  "author": "SirPartyDyret",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SirPartyDyret/music-site/issues"
+  },
+  "homepage": "https://github.com/SirPartyDyret/music-site#readme",
+  "dependencies": {
+    "hapi": "^16.6.2"
+  }
+}

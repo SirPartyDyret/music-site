@@ -1,14 +1,32 @@
-const http = require('http');
+'use strict';
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const Hapi = require('hapi');
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
-  res.end('Hello World\n');
+const server = new Hapi.Server();
+server.connection({ port: 3000, host: 'localhost' });
+
+server.route({
+    method: 'GET',
+    path: '/',
+    handler: function (request, reply) {
+        reply('Hello, World!');
+    }
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`); //hello
+server.route({
+    method: 'GET',
+    path: '/{name}',
+    handler: function (request, reply) {
+        reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
+    }
+});
+
+
+server.start((err) => {
+
+    if (err) {
+        throw err;
+    }
+
+    console.log(`Server running at: ${server.info.uri}`);
 });
