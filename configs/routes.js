@@ -69,4 +69,18 @@ module.exports = [
           return reply.redirect('/');
         }
       },
+
+      {
+        method: "GET",
+        path: "/semantic/{param*}",
+        config: {
+            handler: {
+                directory: {
+                    path: "./../semantic",
+                    listing: false,
+                    index: false
+                },
+            },
+        },
+    },
 ]
