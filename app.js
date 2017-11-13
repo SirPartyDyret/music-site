@@ -1,26 +1,21 @@
-'use strict';
-
+const Path = require('path');
 const Hapi = require('hapi');
+const Plugins = require('./plugins');
 
-const server = new Hapi.Server();
-server.connection({ port: 3000, host: 'localhost' });
-
-server.route({
-    method: 'GET',
-    path: '/',
-    handler: function (request, reply) {
-        reply('Hello, World!');
+const server = new Hapi.Server({
+    connections: {
+        routes: {
+            files: {
+                relativeTo: Path.join(__dirname, 'public')
+            }
+        }
     }
 });
+server.connection({ port: 3000, host: "localhost" });
 
-server.route({
-    method: 'GET',
-    path: '/{name}',
-    handler: function (request, reply) {
-        reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
-    }
-});
+server.register(Plugins, () => {});
 
+server.route(require("./routes"));
 
 server.start((err) => {
 
@@ -28,5 +23,5 @@ server.start((err) => {
         throw err;
     }
 
-    console.log(`Server running at: ${server.info.uri}`);
+    console.log('Server running at:', server.info.uri);
 });
