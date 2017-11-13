@@ -1,6 +1,6 @@
 const Path = require('path');
 const Hapi = require('hapi');
-const Plugins = require('./plugins');
+const configs = require('./configs/_exported-configs');
 
 const server = new Hapi.Server({
     connections: {
@@ -11,11 +11,18 @@ const server = new Hapi.Server({
         }
     }
 });
-server.connection({ port: 3000, host: "localhost" });
+server.connection({ port: 3000, host: configs._config.host });
 
-server.register(Plugins, () => {});
+server.register(configs._plugins, () => {});
 
-server.route(require("./routes"));
+server.auth.strategy('session', 'cookie', configs._cookieAuth);
+server.log('info', 'Registered auth strategy: cookie auth');
+server.auth.strategy('spotify', 'bell', configs._bellAuth),
+server.log('info', 'Registered auth strategy: spotify auth');
+
+server.views(configs._views);
+
+server.route(configs._routes);
 
 server.start((err) => {
 
