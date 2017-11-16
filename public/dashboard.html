@@ -124,7 +124,7 @@
         }
     </style>
 
-    <script src="assets/library/jquery.min.js"></script>
+    <script src="/js/jq/jquery.min.js"></script>
     <script src="/semantic/dist/components/visibility.js"></script>
     <script src="/semantic/dist/components/sidebar.js"></script>
     <script src="/semantic/dist/components/transition.js"></script>
@@ -205,6 +205,27 @@
                         {{/if}}
                     </div>
                 </div>
+                <div class="ui middle attached tabular menu">
+                    <a class="item active">
+                        Your Playlists
+                    </a>
+                    <a class="item">
+                        Your Albums
+                    </a>
+                    <div class="right menu">
+                        <div class="item">
+                            <div class="ui transparent icon input">
+                                <input type="text" placeholder="Search users...">
+                                <i class="search link icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui bottom attached segment">
+                    <div class="item html">
+
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -237,7 +258,21 @@
             </div>
         </div>
     </div>
-
+    <button class="ui secondary basic button" id="get">I'm a "get" test button</button>
+    <script>
+        $(document).ready(function () {
+            $.get("/api/playlist", function (data, status) {
+                for (i = 0; i < data.length; i++) {
+                    $('<iframe>', {
+                        src: 'https://open.spotify.com/embed?uri=' + data[i],
+                        width: '300',
+                        height: '380',
+                        allowtransparency: 'true'
+                    }).appendTo('.html');
+                };
+            });
+        });
+    </script>
 </body>
 
 </html>

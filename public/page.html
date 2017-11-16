@@ -198,9 +198,10 @@
                     <a class="item">Careers</a>
                     <div class="right item">
                         {{#if context.session.username}}
-                            <a class="ui inverted button" href="/logout">Log out</a>
+                        <a class="ui inverted button" href="/dashboard">Dashboard</a>
+                        <a class="ui inverted button" href="/logout">Log out</a>
                         {{else}}
-                            <a class="ui inverted button" href="/login">Log in</a>
+                        <a class="ui inverted button" href="/login">Log in</a>
                         {{/if}}
                     </div>
                 </div>
