@@ -4,5 +4,6 @@ module.exports = {
     _routes : require("./routes"),
     _views : require("./viewsConfig"),
     _bellAuth : require("./bellAuthConfig"),
-    _cookieAuth : require("./cookieAuthConfig")
+    _cookieAuth : require("./cookieAuthConfig"),
+    _endpointRoutes : require("./endpointRoutes"),
 }

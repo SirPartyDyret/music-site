@@ -1,5 +1,3 @@
-const spotifyReq = require("./spotifyEndpoints")
-
 module.exports = [{
         method: 'GET',
         path: '/',
@@ -97,31 +95,6 @@ module.exports = [{
                 },
             },
         },
-    },
-
-    {
-        method: 'GET',
-        path: '/api/playlist',
-        config: {
-            auth: {
-                strategy: 'session',
-                mode: 'required'
-            }
-        },
-
-        handler: function (request, reply) {
-            spotifyReq.SpotifyRequest('/v1/me/playlists', 'BQCagsrQGgPuvS17TgYQYCXbp4_TH-BN644028pHrBMHwVTzsReR8LDgtWWl00IoFvOZ2RpyUgK3s1J8sLxP-xIDJhRiV4p5SBcRNBC1gYBB7FxgxCF1el7mFKAkkmtZ6g57Dw_hZA4mNodQ2OtiU0_kbTM');
-
-            // Call .once to avoid reply interface called twice error
-            spotifyReq.body.once('update', function () {
-                var items = spotifyReq.body.data.items;
-                var uris = items.map((item) => { return item.uri });
-                console.log(uris);
-
-                return reply(uris);
-            });
-        }
-
     },
 
     {

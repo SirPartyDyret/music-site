@@ -13,10 +13,19 @@ const SpotifyRequest = (uri, token) => {
         });
 };
 
-module.exports = {SpotifyRequest, body};
+module.exports = {
+    SpotifyRequest,
+    body
+};
 /*
-SpotifyRequest('/v1/me/playlists', 'BQDXe3ooW2_jHfpF8bJozxXF8h7zGiOVYRSb7ZXzf3QadUUNZsgvqT8pDdMzM3EjNcaomCAjT5f4mbVfyAPGS3JG5vGIPgSmy10QGeLwVskj9SZoE-ouQmRFhTObZG1eBWlQq7MulUxFP1TyE44aPYjdZ4c');
+SpotifyRequest('/v1/me/albums', 'BQAK9lrY9Xbd8MqWUp6uRnTLYjNIKW6zxN7FI5yllIHQyd9N_TvomjJicmJgK6dgkG4IpuNJNPG8iZabP9TtKJjbX1k3PfKmS63QRaDTsEfwZnZPI8xZEdu6xTamHfHhCgwytvMvcXtPOzxvqaHlIMDALFJCC-jB8js8KmAy');
 
- body.on('update', function() {
-     console.log(body.data.items[0].uri);
- });*/
+// Call .once to avoid reply interface called twice error
+body.once('update', function () {
+    var items = body.data.items;
+    var uris = items.map((item) => {
+        return item.album.uri
+    });
+
+    console.log(uris);
+});*/

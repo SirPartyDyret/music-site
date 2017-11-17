@@ -23,6 +23,7 @@ server.log('info', 'Registered auth strategy: spotify auth');
 server.views(configs._views);
 
 server.route(configs._routes);
+server.route(configs._endpointRoutes);
 
 server.start((err) => {
 
