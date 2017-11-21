@@ -18,14 +18,16 @@ module.exports = {
     body
 };
 /*
-SpotifyRequest('/v1/me/albums', 'BQAK9lrY9Xbd8MqWUp6uRnTLYjNIKW6zxN7FI5yllIHQyd9N_TvomjJicmJgK6dgkG4IpuNJNPG8iZabP9TtKJjbX1k3PfKmS63QRaDTsEfwZnZPI8xZEdu6xTamHfHhCgwytvMvcXtPOzxvqaHlIMDALFJCC-jB8js8KmAy');
+SpotifyRequest(
+'/v1/me/playlists',
+'BQAUTNPMMPf3HUlj942v9x39SIJ0P5PXtdW8qPKOVQLwkDuyZQyXb7A5ohMNoZA1GzfXPZ7GUlLh6ZeA76akhbpzw0oJ6CAHqy1jghv8HB0YVffiodyTpCYYReBRdI2cUfzTO6xWm7TxbU7xNwWSDAsPTOO4Bjqo8t47A2iXE_NAtQ');
 
 // Call .once to avoid reply interface called twice error
+    //var uris = items.map((item) => {
 body.once('update', function () {
-    var items = body.data.items;
-    var uris = items.map((item) => {
-        return item.album.uri
-    });
+    const items = body.data.items;
+    //    return item
+    //});
 
-    console.log(uris);
+    console.log(items);
 });*/

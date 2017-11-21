@@ -1,5 +1,5 @@
 const spotifyReq = require("./spotifyEndpoints");
-const token = 'BQCCdH_ULV7L5JG-ijtyuiIsXA-8woxc4nSU-o0XBiChW2PKj46bxhG9mVDXjl3bdV7Wh7foj54BxOFKYZJlZO1cNbs0myFTiirO5puMTJajzBEouD4gVxweVDtSC373VP6ddA0FTgDDqU7M2y8McmYIoexU_cMU6nET45HX'
+const token = 'BQAr7lO9sTCDu9ab4RBV4EMC7_h_lse3cpgyzxiPEX5jiOG3XRCLQ65n3WMjRO-UkOWDz0VKkGx8SOwtu2dLvLCif06ogpR7VBcCzxZDUSXlQSUJ2P33TET0Td3KfKj98okaSyTn1gRJ-3UUw7YpelRnVdwv-pJ8YcVxGR8a-FN8UQ';
 
 module.exports = [{
     method: 'GET',
@@ -16,8 +16,8 @@ module.exports = [{
 
         // Call .once to avoid reply interface called twice error
         spotifyReq.body.once('update', function () {
-            var items = spotifyReq.body.data.items;
-            var uris = items.map((item) => { return item.uri });
+            let items = spotifyReq.body.data.items;
+            let uris = items.map((item) => { return item.uri });
 
             return reply(uris);
         });
@@ -49,6 +49,5 @@ module.exports = [{
 
 
 },
-
 
 ]

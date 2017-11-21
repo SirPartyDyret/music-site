@@ -31,9 +31,7 @@ module.exports = [{
             const context = {
                 session: request.auth.credentials,
             };
-
-            console.log(request.auth.credentials.username);
-
+            
             reply.view('dashboard', {
                 title: 'Dashboard',
                 context: context
