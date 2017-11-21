@@ -24,6 +24,8 @@
     "hapi-auth-cookie": "^7.0.0",
     "inert": "^4.2.1",
     "jquery": "^3.2.1",
+    "leveldown": "^2.0.1",
+    "levelup": "^2.0.1",
     "refresh-token": "^1.0.0",
     "request": "^2.83.0",
     "semantic-ui": "^2.2.13",

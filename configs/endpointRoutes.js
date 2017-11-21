@@ -1,5 +1,15 @@
 const spotifyReq = require("./spotifyEndpoints");
-const token = 'BQAr7lO9sTCDu9ab4RBV4EMC7_h_lse3cpgyzxiPEX5jiOG3XRCLQ65n3WMjRO-UkOWDz0VKkGx8SOwtu2dLvLCif06ogpR7VBcCzxZDUSXlQSUJ2P33TET0Td3KfKj98okaSyTn1gRJ-3UUw7YpelRnVdwv-pJ8YcVxGR8a-FN8UQ';
+const db = require("./dbconfig");
+let token = '';
+//TODO: Fetch token from DB, store it in local variable.
+db.get('token', function (err, value) {
+    if (err) return console.log('Ooops!', err); // likely the key was not found
+
+    // Ta da!
+    console.log('token: ' + value);
+    token = value;
+})
+
 
 module.exports = [{
     method: 'GET',

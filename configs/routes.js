@@ -1,3 +1,5 @@
+const db = require("./dbconfig");
+
 module.exports = [{
         method: 'GET',
         path: '/',
@@ -53,7 +55,11 @@ module.exports = [{
                     return reply.redirect('/');
                 }
 
-                console.log(request.auth.credentials);
+                db.put('token', request.auth.credentials.token, function (err) {
+                    if (err) return console.log('Ooops!', err) // some kind of I/O error
+                })
+
+                //console.log(request.auth.credentials);
 
                 const username = request.auth.credentials.profile.username
                 request.cookieAuth.set({
