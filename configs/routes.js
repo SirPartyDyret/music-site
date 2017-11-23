@@ -34,6 +34,7 @@ module.exports = [{
                 session: request.auth.credentials,
             };
             
+            
             reply.view('dashboard', {
                 title: 'Dashboard',
                 context: context
@@ -55,11 +56,9 @@ module.exports = [{
                     return reply.redirect('/');
                 }
 
-                db.put('token', request.auth.credentials.token, function (err) {
+                db.put(request.auth.credentials.profile.username, request.auth.credentials.token, function (err) {
                     if (err) return console.log('Ooops!', err) // some kind of I/O error
                 })
-
-                //console.log(request.auth.credentials);
 
                 const username = request.auth.credentials.profile.username
                 request.cookieAuth.set({
@@ -83,7 +82,12 @@ module.exports = [{
         handler: function (request, reply) {
             // Clear the cookie
             request.cookieAuth.clear();
+            // Clear token from db
+            db.del(request.auth.credentials.username, function (err, value) {
+                if (err) return console.log('Ooops!', err); // likely the key was not found
+            })
             return reply.redirect('/');
+
         }
     },
 
@@ -94,8 +98,8 @@ module.exports = [{
             handler: {
                 directory: {
                     path: "./../semantic",
-                    listing: true,
-                    index: true
+                    listing: false,
+                    index: false
                 },
             },
         },

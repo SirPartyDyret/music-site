@@ -256,6 +256,16 @@
 	<button class="ui secondary basic button" id="get">I'm a "get" test button</button>
 	<script>
 		$(document).ready(function () {
+			$.get("/api/playlist", function (data, status) {
+				for (i = 0; i < data.length; i++) {
+					$('<iframe>', {
+						src: 'https://open.spotify.com/embed?uri=' + data[i],
+						width: '300',
+						height: '380',
+						allowtransparency: 'true'
+					}).appendTo('.html');
+				};
+			});
 			$("#albums").click(function () {
 				$('.html').empty();
 				$("#playlists").removeClass("active");
@@ -285,17 +295,6 @@
 						}).appendTo('.html');
 					};
 				});
-			});
-
-			$.get("/api/playlist", function (data, status) {
-				for (i = 0; i < data.length; i++) {
-					$('<iframe>', {
-						src: 'https://open.spotify.com/embed?uri=' + data[i],
-						width: '300',
-						height: '380',
-						allowtransparency: 'true'
-					}).appendTo('.html');
-				};
 			});
 		});
 	</script>

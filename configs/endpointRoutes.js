@@ -1,14 +1,7 @@
 const spotifyReq = require("./spotifyEndpoints");
 const db = require("./dbconfig");
+const routes = require("./routes");
 let token = '';
-//TODO: Fetch token from DB, store it in local variable.
-db.get('token', function (err, value) {
-    if (err) return console.log('Ooops!', err); // likely the key was not found
-
-    // Ta da!
-    console.log('token: ' + value);
-    token = value;
-})
 
 
 module.exports = [{
@@ -22,8 +15,15 @@ module.exports = [{
     },
 
     handler: function (request, reply) {
-        spotifyReq.SpotifyRequest('/v1/me/playlists', token);
+        db.get(request.auth.credentials.username, function (err, value) {
+            if (err) return console.log('Ooops!', err); // likely the key was not found
+        
+            // Ta da!
+            token = value;
+        })
 
+        spotifyReq.SpotifyRequest('/v1/me/playlists', token);
+        
         // Call .once to avoid reply interface called twice error
         spotifyReq.body.once('update', function () {
             let items = spotifyReq.body.data.items;
@@ -46,6 +46,13 @@ module.exports = [{
     },
 
     handler: function (request, reply) {
+        db.get(request.auth.credentials.username, function (err, value) {
+            if (err) return console.log('Ooops!', err); // likely the key was not found
+        
+            // Ta da!
+            token = value;
+        })
+
         spotifyReq.SpotifyRequest('/v1/me/albums', token);
 
         // Call .once to avoid reply interface called twice error

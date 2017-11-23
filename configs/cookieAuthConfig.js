@@ -7,7 +7,8 @@ module.exports = {
     isSameSite: config.auth.cookieAuth.isSameSite,
     redirectTo: config.auth.loginUrl,
     redirectOnTry: false,
-    appendNext: 'redirect'
+    appendNext: 'redirect',
+    ttl: 3600000
 }
 
 
